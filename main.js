@@ -33,16 +33,15 @@ function renderUserProfile(user) {
   <input type="submit" value ="${user.age}"class="input"></input>`
 
 
-const userDelete = document.createElement('button');
+    const userDelete = document.createElement('button');
+    userDelete.classList.add('delete-button');
+    userDelete.innerHTML = 'Delete';
 
-userDelete.classList.add('delete-button');
-userDelete.innerHTML = 'Delete';
+    userProfile.appendChild(userDelete);
 
-userProfile.appendChild(userDelete);
-
-userDelete.addEventListener('click', () => {
-  deleteFull(user.id, userProfile);
-})
+    userDelete.addEventListener('click', () => {
+      deleteFull(user.id, userProfile);
+ })
 }
 function renderUser(path){
   path.forEach(el => renderUserProfile(el));

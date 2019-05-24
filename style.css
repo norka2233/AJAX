@@ -66,3 +66,11 @@ body {
        color: white;
 
 }
+
+.err{
+       text-align: center;
+       background-color:  rgb(168, 48, 48);
+       font-size: 35px;
+       font-weight: bold;
+       color: #eeeeee;
+}
