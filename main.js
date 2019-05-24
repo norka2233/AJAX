@@ -1,21 +1,25 @@
 const createBtn = document.querySelector('#button');
 const userContainer = document.querySelector('.user-container');
-const userProfile = document.querySelector('user-profile');
+const err = document.querySelector('.err');
 
 
 createBtn.addEventListener('click', saveUser);
 function saveUser() {
-
-  const name = document.querySelector('#name').value;
   const age = document.querySelector('#age').value;
+  const name = document.querySelector('#name').value;
 
   if(name == NaN){
-    return console.log('Incorrect Name');
-
+    err.innerHTML = 'incorrect name';
+    return false;
   }
-  if(!(age > 1 && age < 150)){
-    return console.log('Incorrect age');
+  elase if(!(age > 1 && age < 150)){
+    err.innerHTML = 'incorrect age';
+    return false;
   }
+  const userData = {
+    name,age
+  }
+  postUser(userData);
 }
 
 function renderUserProfile(user) {
@@ -24,10 +28,10 @@ function renderUserProfile(user) {
   userProfile.classList.add('user-profile')
   userContainer.appendChild(userProfile);
 
-  userCard.innerHTML =
+  userProfile.innerHTML =
   `<input type="submit" value ="${user.name}" class="input"></input>
   <input type="submit" value ="${user.age}"class="input"></input>`
-}
+
 
 const userDelete = document.createElement('button');
 
@@ -39,7 +43,7 @@ userProfile.appendChild(userDelete);
 userDelete.addEventListener('click', () => {
   deleteFull(user.id, userProfile);
 })
-
+}
 function renderUser(path){
   path.forEach(el => renderUserProfile(el));
 }
