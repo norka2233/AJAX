@@ -12,14 +12,14 @@ function saveUser() {
     err.innerHTML = 'incorrect name';
     return false;
   }
-  elase if(!(age > 1 && age < 150)){
+  if(!(age > 1 && age < 150)){
     err.innerHTML = 'incorrect age';
     return false;
   }
   const userData = {
     name,age
   }
-  postUser(userData);
+  addUser(userData);
 }
 
 function renderUserProfile(user) {
@@ -40,7 +40,7 @@ function renderUserProfile(user) {
     userProfile.appendChild(userDelete);
 
     userDelete.addEventListener('click', () => {
-      deleteFull(user.id, userProfile);
+      deleteUserFromServer(user.id, userProfile);
  })
 }
 function renderUser(path){

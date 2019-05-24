@@ -19,21 +19,22 @@ getUser();
 async function addUser(userData){
   try {
     const saveServer = await axios.post(URL, userData);
-    if (SaveToServer.status == 200) {
-      renderUserCard({
-        ...SaveToServer.data.data,
+    document.getElementById('name').value = '';
+    document.getElementById('age').value = 0;
+    if (saveServer.status === 200) {
+      renderUserProfile({
+        ...saveServer.data.data,
         id: SaveToServer.data.data._id})
-            }
-    else{
+    } else{
       throw new Error();
     }
-    document.getElementById('#name').value = '';
-    document.getElementById('#age').value = 0;
+
   }
   catch(err) {
     err.innerHTML = 'Cannot save profile';
   }
 }
+
 
 async function deleteUserFromServer(id, userProfile){
   try {
@@ -43,7 +44,7 @@ async function deleteUserFromServer(id, userProfile){
     }
     else {
       throw new Error();
-    } 
+    }
   }
   catch(err) {
     err.innerHTML = 'Cannot delete an account';
