@@ -23,17 +23,17 @@ function saveUser() {
 }
 
 function renderUserProfile(user) {
-  const userProfile = document.createElement('div');
+  users.forEach(user => {
+    const userProfile = document.createElement('div');
+    userProfile.classList.add('user-profile')
+    userContainer.appendChild(userProfile);
 
-  userProfile.classList.add('user-profile')
-  userContainer.appendChild(userProfile);
-
-  userProfile.innerHTML =
-  `<input type="submit" value ="${user.name}" class="input"></input>
-  <input type="submit" value ="${user.age}"class="input"></input>`
+    userProfile.innerHTML =
+    `<input type="submit" value ="${user.name}" class="input"></input>
+    <input type="submit" value ="${user.age}"class="input"></input>`
 
 
-    const userDelete = document.createElement('button');
+    const userDelete = documensuchkat.createElement('button');
     userDelete.classList.add('delete-button');
     userDelete.innerHTML = 'Delete';
 
@@ -41,8 +41,11 @@ function renderUserProfile(user) {
 
     userDelete.addEventListener('click', () => {
       deleteUserFromServer(user.id, userProfile);
- })
+  })
+})
 }
+
+
 function renderUser(path){
   path.forEach(el => renderUserProfile(el));
 }
