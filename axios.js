@@ -17,24 +17,35 @@ async function getUser() {
 }
 getUser();
 
-async function addUser(userData){
-  try {
-    const saveServer = await axios.post(URL,userData);
-    document.getElementById('name').value = '';
-    document.getElementById('age').value = 0;
-    if (saveServer.status === 200) {
-      renderUserProfile({
-        ...saveServer.data.data,
-        id: SaveServer.data.data._id})
-    } else{
-      throw new Error();
+function addUser(userData){
+  return new Promise(async (resolve, reject) => {
+    try {
+      const saveServer = await axios.post(URL, userData);
+      if (saveServer.status === 200) {
+          return resolve({
+            ...saveServer.data.data,
+            id: saveServer.data.data._id,
+          });
+      } else {
+        return reject(new Error('Something went wrong!'))
+      }
+    } catch(err) {
+      return reject(new Error('Cannot save profile'));
     }
-  }
-  catch(err) {
-    err.innerHTML = 'Cannot save profile';
-  }
+  });
 }
-
+// async function addUser(userData)
+//     .then((user) => {
+//       document.getElementById('name').value = '';
+//       document.getElementById('age').value = 0;
+//       renderUserProfile(user);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       // insert error into html
+// }
+// });
+// }
 
 async function deleteUserFromServer(id,userProfile){
   try {

@@ -19,13 +19,23 @@ function saveUser() {
   const userData = {
     name,age
   }
-  addUser(userData);
+  addUser(userData)
+    .then((user) => {
+      document.getElementById('name').value = '';
+      document.getElementById('age').value = 0;
+      renderUserProfile(user);
+    })
+    .catch(err => {
+      console.log(err);
+      // insert error into html
+    })
+
 }
 
 function renderUserProfile(user) {
-  user.forEach(user => {
+  // user.forEach(user => {
     const userProfile = document.createElement('div');
-    userProfile.classList.add('user-profile')
+    userProfile.classList.add('user-profile');
     userContainer.appendChild(userProfile);
 
     userProfile.innerHTML =
@@ -42,8 +52,8 @@ function renderUserProfile(user) {
     userDelete.addEventListener('click', () => {
       deleteUserFromServer(user.id, userProfile);
   })
-})
 }
+// }
 
 
 function renderUser(path){
