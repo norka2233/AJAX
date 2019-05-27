@@ -23,7 +23,7 @@ function saveUser() {
 }
 
 function renderUserProfile(user) {
-  users.forEach(user => {
+  user.forEach(user => {
     const userProfile = document.createElement('div');
     userProfile.classList.add('user-profile')
     userContainer.appendChild(userProfile);
@@ -33,7 +33,7 @@ function renderUserProfile(user) {
     <input type="submit" value ="${user.age}"class="input"></input>`
 
 
-    const userDelete = documensuchkat.createElement('button');
+    const userDelete = document.createElement('button');
     userDelete.classList.add('delete-button');
     userDelete.innerHTML = 'Delete';
 

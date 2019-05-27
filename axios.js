@@ -6,7 +6,8 @@ async function getUser() {
     const path = response.data.data;
       if(response.status === 200){
         renderUser(path);
-      }else {
+      }
+      else {
         throw new Error();
       }
   }
@@ -18,17 +19,16 @@ getUser();
 
 async function addUser(userData){
   try {
-    const saveServer = await axios.post(URL, userData);
+    const saveServer = await axios.post(URL,userData);
     document.getElementById('name').value = '';
     document.getElementById('age').value = 0;
     if (saveServer.status === 200) {
       renderUserProfile({
         ...saveServer.data.data,
-        id: SaveToServer.data.data._id})
+        id: SaveServer.data.data._id})
     } else{
       throw new Error();
     }
-
   }
   catch(err) {
     err.innerHTML = 'Cannot save profile';
@@ -36,9 +36,9 @@ async function addUser(userData){
 }
 
 
-async function deleteUserFromServer(id, userProfile){
+async function deleteUserFromServer(id,userProfile){
   try {
-    const deleteUser = await axios.delete('https://test-users-api.herokuapp.com/users/'+`${id}`);
+    const deleteUser = await axios.delete('https://test-users-api.herokuapp.com/users/'+`${id}`)
     if (deleteUser.status === 200) {
         userProfile.remove();
     }
