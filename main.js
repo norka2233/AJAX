@@ -8,7 +8,7 @@ function saveUser() {
   const age = document.querySelector('#age').value;
   const name = document.querySelector('#name').value;
 
-  if(name == NaN){
+  if(isNaN(name)){
     err.innerHTML = 'incorrect name';
     return false;
   }
@@ -29,7 +29,7 @@ function saveUser() {
       console.log(err);
       // insert error into html
     })
-
+}
 }
 
 function renderUserProfile(user) {
